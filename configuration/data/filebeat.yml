@@ -1,17 +1,17 @@
 filebeat.prospectors:
-- input_type: log
+- type: log
   paths:
     - /survival.txt
   backoff_factor: 1
   fields:
     key: survival
-- input_type: log
+- type: log
   paths:
     - /endless.txt
   backoff_factor: 1
   fields:
     key: endless
-- input_type: log
+- type: log
   paths:
     - /pvp.log
   backoff_factor: 1
