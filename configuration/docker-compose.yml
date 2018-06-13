@@ -1,0 +1,29 @@
+version: "3.6"
+services:
+  queue:
+    image: "php:7.2-fpm"
+    restart: always
+    command: php /var/www/html/bin/console app:queue
+    depends_on:
+      - buffer
+    volumes:
+      - ./data/app/:/var/www/html/
+    env_file:
+      - .env
+  logger:
+    image: "dstacademy/filebeat:0.3"
+    restart: always
+    depends_on:
+      - buffer
+    volumes:
+      - ./data/filebeat.yml:/filebeat.yml
+      - ../../play-survival/configuration/state/overworld/server_chat_log.txt:/survival.txt
+      - ../../play-endless/configuration/state/overworld/server_chat_log.txt:/endless.txt
+      - ../../play-pvp/configuration/state/overworld/server_chat_log.txt:/pvp.txt
+    env_file:
+      - ./.env
+  buffer:
+    image: "redis:4.0"
+    restart: always
+    env_file:
+      - ./.env

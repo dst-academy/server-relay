@@ -1,0 +1,24 @@
+filebeat.prospectors:
+- input_type: log
+  paths:
+    - /survival.txt
+  backoff_factor: 1
+  fields:
+    key: survival
+- input_type: log
+  paths:
+    - /endless.txt
+  backoff_factor: 1
+  fields:
+    key: endless
+- input_type: log
+  paths:
+    - /pvp.log
+  backoff_factor: 1
+  fields:
+    key: pvp
+
+output.redis:
+  hosts: ["buffer"]
+  key: "%{[fields.key]}"
+  timeout: 5
