@@ -7,7 +7,7 @@ services:
     depends_on:
       - buffer
     volumes:
-      - ./data/app/:/var/www/html/
+      - ./data/application/:/var/www/html/
     env_file:
       - .env
   logger:
