@@ -3,18 +3,21 @@ filebeat.prospectors:
   paths:
     - /survival.txt
   backoff_factor: 1
+  tail_files: true
   fields:
     key: survival
 - type: log
   paths:
     - /endless.txt
   backoff_factor: 1
+  tail_files: true
   fields:
     key: endless
 - type: log
   paths:
     - /pvp.log
   backoff_factor: 1
+  tail_files: true
   fields:
     key: pvp
 
